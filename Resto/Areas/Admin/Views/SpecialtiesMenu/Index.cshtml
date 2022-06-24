@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SpecialtiesMenu>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Basic Table</h4>
+             
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>count</th>
+                                <th>Image</th>
+                                <th>Food Name</th>
+                                <th>Food Category</th>
+                                <th>Food Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <td>@count</td>
+                                    <td><img src="~/assets/img/@item.Image"/></td>
+                                    <td>@item.FoodName</td>
+                                    <td>@item.FoodCategory</td>
+                                    <td>$@item.Price</td>
+                                    <td>
+                                        <a class="btn btn-danger" asp-controller="SpecialtiesMenu" asp-action="Delete" asp-route-id="@item.Id" >Delete</a>
+                                        <a class="btn btn-primary" asp-controller="SpecialtiesMenu" asp-action="Update" asp-route-id="@item.Id" >Update</a>
+                                        <a class="btn btn-success" asp-controller="SpecialtiesMenu" asp-action="Detail" asp-route-id="@item.Id" >Detail</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
